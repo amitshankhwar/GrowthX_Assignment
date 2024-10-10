@@ -29,5 +29,173 @@ Before you begin, ensure you have the following installed on your system:
 ```bash
 git clone https://github.com/your-username/GrowthX_Assignment.git
 cd backend
+```
+### 2. Install Dependencies
+Use npm to install the project dependencies:
+```bash
+npm install
+```
+
+### 3. Set Up Environment Variables
+Create a .env file in the root of the project and define the necessary environment variables:
+```plaintext
+# .env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/assignment_portal  # Update this if using a remote MongoDB instance
+JWT_SECRET=yourSuperSecretKey   # Define your own JWT secret for signing tokens
+```
+
+### 4. Start MongoDB
+Ensure that MongoDB is running on your machine. If you’re running MongoDB locally, Or connect to a remote MongoDB instance by changing the MONGO_URI in your .env file.
+
+### 5. Run the Application
+You can start the application using nodemon (for development) or node (for production).
+
+```bash
+npm run server
+```
+
+### 6. Test API Endpoints
+You can test the API endpoints using Postman, Insomnia, or any other API testing tool.
+
+### API Endpoints
+
+#### User Endpoints:
+
+- **Register a user:**
+  - `POST /api/users/register`
+  - Request body:
+    ```json
+    {
+      "username": "john_doe",
+      "password": "password123",
+      "role": "user" // or "admin"
+    }
+    ```
+  - Response:
+    ```json
+     { "message": "User registered successfully" }
+   ```
+- **User Login:**
+  - `POST /api/users/login`
+  - Request body:
+    ```json
+    {
+      "username": "john_doe",
+      "password": "password123",
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "token": "JWT_TOKEN"
+    }
+    ```
+- **Upload Assignment (for Authenticated user):**
+  - `POST /api/users/upload`
+  - Headers:
+    ```makefile
+    Authorization: Bearer <your_jwt_token>
+    ```
+  - Request body:
+    ```json
+    {
+    "task": "Complete backend development",
+    "admin": "admin_username"
+    }
+    ```
+  - Response:
+    ```json
+     { "message": "Assignment uploaded" }
+    ```
+- **Get All Admins::**
+  - `POST /api/users/admins`
+  - 
+  - Response:
+    ```json
+    [
+      {
+      "_id": "60bdbf81a1f4a2132c72f9a6",
+      "username": "admin_alok",
+      "role": "admin"
+      }
+    ]
+    ```
+#### Admin Endpoints:
+
+- **Admin Login::**
+  - `POST /api/admins/loginr`
+  - Request body:
+    ```json
+    {
+    "username": "admin_alok",
+    "password": "adminpassword123"
+    }
+    ```
+  - Response:
+    ```json
+     {
+    "token": "JWT_TOKEN"
+    }
+   ```
+- **View Assignments Submit to Respective Admin (Authenticated):**
+  - `GET /api/admins/assignments`
+ - Headers:
+    ```makefile
+    Authorization: Bearer <your_jwt_token>
+    ```
+  - Request body:
+    ```json
+    {
+    "task": "Complete backend development",
+    "admin": "admin_username"
+    }
+    ```
+  - Response:
+    ```json
+     [
+        {
+        "_id": "60bdbf81a1f4a2132c72f9a9",
+        "userId": {
+          "_id": "60bdbf81a1f4a2132c72f9a7",
+          "username": "john_doe"
+        },
+        "adminId": "60bdbf81a1f4a2132c72f9a5",
+        "task": "Complete backend development",
+        "createdAt": "2024-10-08T07:20:50.522Z",
+        "status": "pending"
+        }
+    ]
+    ```
+- **Accept Assignment (Authenticated)::**
+  - `POST /api/admins/assignments/:id/accept`
+ - Headers:
+    ```makefile
+    Authorization: Bearer <your_jwt_token>
+    ```
+ 
+  - Response:
+    ```json
+    { "message": "Assignment accepted" }
+    ```
+- **Reject Assignment (Authenticated):**
+  - `POST /api/admins/assignments/:id/reject`
+ - Headers:
+    ```makefile
+    Authorization: Bearer <your_jwt_token>
+    ```
+ 
+  - Response:
+    ```json
+    { "message": "Assignment rejected" }
+    ```
+### Authentication
+For any endpoints requiring authentication, you must send the JWT token in the Authorization header. Use the following format:
+    ```makefile
+    Authorization: Bearer <your_jwt_token>
+    ```
+You can obtain the JWT token by logging in as a user or admin using the /api/users/login or /api/admins/login endpoints.    
+
+
 
 
