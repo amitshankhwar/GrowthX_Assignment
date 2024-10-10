@@ -39,7 +39,6 @@ npm install
 ### 3. Set Up Environment Variables
 Create a .env file in the root of the project and define the necessary environment variables:
 ```plaintext
-# .env
 PORT=5000
 MONGO_URI=mongodb://localhost:27017/assignment_portal  # Update this if using a remote MongoDB instance
 JWT_SECRET=yourSuperSecretKey   # Define your own JWT secret for signing tokens
