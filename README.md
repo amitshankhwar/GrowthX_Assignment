@@ -67,7 +67,7 @@ You can test the API endpoints using Postman, Insomnia, or any other API testing
   - Request body:
     ```json
     {
-      "username": "john_doe",
+      "username": "amit",
       "password": "password123",
       "role": "user" // or "admin"
     }
@@ -81,7 +81,7 @@ You can test the API endpoints using Postman, Insomnia, or any other API testing
   - Request body:
     ```json
     {
-      "username": "john_doe",
+      "username": "amit",
       "password": "password123",
     }
     ```
@@ -116,7 +116,7 @@ You can test the API endpoints using Postman, Insomnia, or any other API testing
     [
       {
       "_id": "60bdbf81a1f4a2132c72f9a6",
-      "username": "admin_alok",
+      "username": "admin_amit",
       "role": "admin"
       }
     ]
@@ -128,7 +128,7 @@ You can test the API endpoints using Postman, Insomnia, or any other API testing
   - Request body:
     ```json
     {
-    "username": "admin_alok",
+    "username": "admin_amit",
     "password": "adminpassword123"
     }
     ```
@@ -148,7 +148,7 @@ You can test the API endpoints using Postman, Insomnia, or any other API testing
     ```json
     {
     "task": "Complete backend development",
-    "admin": "admin_username"
+    "admin": "admin_amit"
     }
     ```
   - Response:
